@@ -2,51 +2,32 @@ package ru.spbstu.main;
 
 import ru.spbstu.main.shapes.*;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
 
+        Random random = new Random();
         Shape[] shapes = new Shape[10];
-        System.out.print("Enter 10 shapes\n");
-        Scanner in = new Scanner(System.in);
+        System.out.print("Now the array is filled with shapes...\n");
 
         for (int i = 0; i < shapes.length; i++) {
-            System.out.print("1 - Circle, 2 - Rectangle, 3 - Triangle. Enter type: ");
-            int shapeType = in.nextByte();
-
-            if ((shapeType > 3) || (shapeType < 1)) {
-                throw new IllegalArgumentException("Wrong type of shape!");
-            }
-
-            switch (shapeType) {
+            switch (random.nextInt(3)) {
+                case 0:
+                    shapes[i] = new Circle(random.nextInt(20) + 1);
+                    break;
                 case 1:
-                    System.out.print("Enter radius of circle: ");
-                    float radius = in.nextFloat();
-                    shapes[i] = new Circle(radius);
+                    shapes[i] = new Rectangle(random.nextInt(20) + 1,
+                            random.nextInt(20) + 1,
+                            random.nextInt(20) + 1);
                     break;
                 case 2:
-                    System.out.print("Enter width of rectangle: ");
-                    float width = in.nextFloat();
-                    System.out.print("Enter height of rectangle: ");
-                    float height = in.nextFloat();
-                    System.out.print("Enter rotation angel of rectangle: ");
-                    float rotationAngel = in.nextFloat();
-                    shapes[i] = new Rectangle(width, height, rotationAngel);
-                    break;
-                case 3:
-                    System.out.print("Enter coordinates of first vertex of triangle: ");
-                    Vector firstSide = new Vector(in.nextFloat(), in.nextFloat());
-                    System.out.print("Enter coordinates of second vertex of triangle: ");
-                    Vector secondSide = new Vector(in.nextFloat(), in.nextFloat());
-                    System.out.print("Enter coordinates of third vertex of triangle: ");
-                    Vector thirdSide = new Vector(in.nextFloat(), in.nextFloat());
-                    System.out.print("Enter rotation angel of triangle: ");
-                    float rotationAngel2 = in.nextFloat();
-                    shapes[i] = new Triangle(firstSide, secondSide, thirdSide, rotationAngel2);
+                    shapes[i] = new Triangle(new Vector(random.nextInt(20), random.nextInt(20)),
+                            new Vector(random.nextInt(20), random.nextInt(20)),
+                            new Vector(random.nextInt(20), random.nextInt(20)),
+                            random.nextInt());
                     break;
             }
-
         }
 
         for (int i = 0; i < shapes.length; i++) {
@@ -90,3 +71,4 @@ public class Main {
     }
 
 }
+
