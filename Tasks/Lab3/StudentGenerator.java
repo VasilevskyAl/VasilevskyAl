@@ -1,4 +1,4 @@
-package com.company.tasks;
+package com.company;
 
 import com.company.Cabinet;
 import com.company.utils.Student;
